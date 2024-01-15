@@ -1,0 +1,42 @@
+description: torchscale
+
+target:
+  service: aml
+  name: gcrarc
+  # name: gcraksa100cl2
+  # service: amlk8s
+  # name: itphyperdgx2cl1
+  # vc: hai2
+
+environment:
+  image: nvidia/a100:v2
+  registry: shumingdocker.azurecr.io
+  setup:
+  - echo "master_addr:" "$$MASTER_ADDR"
+  - echo "master_port:" $$MASTER_PORT
+  - echo "node_rank:" $$NODE_RANK
+  username: shumingdocker
+
+code:
+  local_dir: $CONFIG_DIR/..
+
+storage:
+  msranlp:
+    storage_account_name: msranlp
+    container_name: unilm
+
+search:
+  job_template:
+    name: train-{rank}
+    sku: 1xG8
+    command:
+    - unset CUDA_VISIBLE_DEVICES
+    - echo $${rank}
+    - bash language_modeling/setup.sh 
+    - bash language_modeling/debug.sh 8 1 "--flash-attention"
+  type: grid
+  max_trials: 500
+  params:
+    - name: rank
+      spec: discrete
+      values: [0]

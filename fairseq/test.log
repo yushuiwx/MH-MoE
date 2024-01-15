@@ -1,0 +1,496 @@
+2023-06-30 19:00:40 | INFO | fairseq.distributed.utils | distributed init (rank 0): env://
+2023-06-30 19:00:40 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:1 to store for rank: 0
+2023-06-30 19:00:40 | INFO | fairseq.distributed.utils | distributed init (rank 1): env://
+2023-06-30 19:00:40 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:1 to store for rank: 1
+2023-06-30 19:00:40 | INFO | torch.distributed.distributed_c10d | Rank 1: Completed store-based barrier for key:store_based_barrier_key:1 with 2 nodes.
+2023-06-30 19:00:40 | INFO | fairseq.distributed.utils | initialized host GCRHYP3C356 as rank 1
+2023-06-30 19:00:40 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 2 nodes.
+2023-06-30 19:00:40 | INFO | fairseq.distributed.utils | initialized host GCRHYP3C356 as rank 0
+[1688151643.420670] [GCRHYP3C356:23489:f]        vfs_fuse.c:281  UCX  ERROR inotify_add_watch(/tmp) failed: No space left on device
+[1688151643.679115] [GCRHYP3C356:23490:f]        vfs_fuse.c:281  UCX  ERROR inotify_add_watch(/tmp) failed: No space left on device
+2023-06-30 19:00:45 | INFO | fairseq_cli.train | nvidia-smi stats: {'gpu_0_mem_used_gb': 13.8681640625, 'gpu_1_mem_used_gb': 14.2216796875, 'gpu_2_mem_used_gb': 13.3076171875, 'gpu_3_mem_used_gb': 13.2998046875, 'gpu_4_mem_used_gb': 13.3076171875, 'gpu_5_mem_used_gb': 13.2919921875, 'gpu_6_mem_used_gb': 13.3017578125, 'gpu_7_mem_used_gb': 13.2724609375, 'gpu_8_mem_used_gb': 13.1748046875, 'gpu_9_mem_used_gb': 13.3017578125, 'gpu_10_mem_used_gb': 13.3017578125, 'gpu_11_mem_used_gb': 13.2880859375, 'gpu_12_mem_used_gb': 13.2998046875, 'gpu_13_mem_used_gb': 13.3017578125, 'gpu_14_mem_used_gb': 13.3017578125, 'gpu_15_mem_used_gb': 13.2216796875}
+2023-06-30 19:00:45 | INFO | fairseq_cli.train | {'_name': None, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 50, 'log_format': 'simple', 'log_file': None, 'tensorboard_logdir': '/mnt1/msranlpintern/wuxun/MoE/MoE_results/test_moe/small-baseline-redstone_v2-flash_attn-8experts/tb-logs', 'wandb_project': None, 'azureml_logging': False, 'seed': 1, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': True, 'memory_efficient_fp16': True, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 4, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'user_dir': None, 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma', 'log_nvidia_smi': False}, 'common_eval': {'_name': None, 'path': None, 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': None, 'is_moe': False}, 'distributed_training': {'_name': None, 'distributed_world_size': 2, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'env://', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': True, 'ddp_backend': 'c10d', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': False, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 2, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': True, 'memory_efficient_fp16': True, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 2, 'num_workers_valid': 0, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': None, 'batch_size': 2, 'required_batch_size_multiple': 1, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 1, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': True, 'max_tokens_valid': None, 'batch_size_valid': 2, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'test', 'num_shards': 1, 'shard_id': 0}, 'optimization': {'_name': None, 'max_epoch': 0, 'max_update': 300000, 'stop_time_hours': 0.0, 'clip_norm': 2.0, 'sentence_avg': False, 'update_freq': [8], 'lr': [0.0006], 'stop_min_lr': -1.0, 'use_bmuf': False}, 'checkpoint': {'_name': None, 'save_dir': '/mnt1/msranlpintern/wuxun/MoE/MoE_results/test_moe/small-baseline-redstone_v2-flash_attn-8experts', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': False, 'optimizer_overrides': '{}', 'save_interval': 1, 'save_interval_updates': 5000, 'keep_interval_updates': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': True, 'no_last_checkpoints': False, 'no_best_checkpoints': False, 'no_save_optimizer_state': False, 'no_save_optimizer_state_on_training_finished': False, 'symlink_best_and_last_checkpoints': False, 'best_checkpoint_metric': 'loss', 'maximize_best_checkpoint_metric': False, 'patience': -1, 'checkpoint_suffix': '-rank-0', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 's3_upload_path': None, 'model_parallel_size': 1}, 'bmuf': {'_name': None, 'block_lr': 1.0, 'block_momentum': 0.875, 'global_sync_iter': 50, 'warmup_iterations': 500, 'use_nbm': False, 'average_sync': False, 'distributed_world_size': 2}, 'generation': {'_name': None, 'beam': 5, 'nbest': 1, 'max_len_a': 0.0, 'max_len_b': 200, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'eval_lm': {'_name': None, 'output_word_probs': False, 'output_word_stats': False, 'context_window': 0, 'softmax_batch': 9223372036854775807, 'stats_path': None, 'max_valid_steps': None}, 'interactive': {'_name': None, 'buffer_size': 0, 'input': '-'}, 'model': {'_name': 'gpt_small', 'activation_fn': 'gelu', 'dropout': 0.1, 'attention_dropout': 0.1, 'activation_dropout': 0.0, 'relu_dropout': 0.0, 'decoder_embed_dim': 768, 'decoder_output_dim': 768, 'decoder_input_dim': 768, 'decoder_ffn_embed_dim': 3072, 'decoder_layers': 12, 'decoder_attention_heads': 12, 'decoder_normalize_before': True, 'no_token_positional_embeddings': True, 'share_decoder_input_output_embed': True, 'decoder_learned_pos': True, 'layernorm_embedding': False, 'no_scale_embedding': False, 'checkpoint_activations': False, 'offload_activations': False, 'min_params_to_wrap': 100000000, 'moe_freq': 2, 'moe_expert_count': 8, 'moe_gating_use_fp32': True, 'moe_second_expert_policy': 'random', 'moe_normalize_gate_prob_before_dropping': True, 'moe_expert_ffn_dim': None, 'moe_top1_expert': False, 'moe_eval_capacity_token_fraction': -1.0, 'moe_normalize_expert_grad': 'world_size', 'record_a2a_perf_stats': False, 'dummy_a2a': False, 'moe_batch_prioritized_routing': False, 'use_xmoe': True, 'use_mhmoe': True, 'mhmoe_heads_number': 2, 'flash_attention': False, 'xpos_rel_pos': True, 'scale_length': 2048, 'add_bos_token': False, 'tokens_per_sample': 2048, 'max_target_positions': None, 'tpu': False, 'memory_efficient_fp16': True, 'fp16': True, 'fp16_no_flatten_grads': False, 'ddp_backend': 'c10d', 'world_size': 2, 'distributed_rank': 0, 'ddp_rank': 0, 'deepnorm': False, 'subln': True, 'rel_pos_buckets': 0, 'max_rel_pos': 0, 'group_norm_size': 1, 'model_parallel_size': 1}, 'task': {'_name': 'gpt', 'data': '/mnt/msranlp/shaohanh/data/redstone_v2_1_config/', 'sample_break_mode': 'none', 'tokens_per_sample': 2048, 'output_dictionary_size': -1, 'self_target': False, 'future_target': False, 'past_target': False, 'add_bos_token': False, 'max_source_positions': None, 'max_target_positions': None, 'shorten_method': 'none', 'shorten_data_split_list': '', 'pad_to_fixed_length': False, 'pad_to_fixed_bsz': False, 'seed': 1, 'batch_size': 2, 'batch_size_valid': 2, 'dataset_impl': None, 'data_buffer_size': 10, 'tpu': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma', 'spm_model': '', 'tiktoken_model': 'cl100k_base', 'gpt2_encoder_json': 'https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/encoder.json', 'gpt2_vocab_bpe': 'https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/vocab.bpe', 'dict_path': '/mnt/msranlp/shaohanh/exp/unigpt_exp/data/tiktoken/cl100k_w_code_dict.txt', 'batch_read_ahead': 10000, 'pad_to_max_len': True, 'absolute_path': False, 'required_batch_size_multiple': 1}, 'criterion': {'_name': 'moe_cross_entropy', 'moe_gate_loss_wt': 0.01, 'moe_gate_loss_combine_method': 'sum', 'moe_gate_loss_transform': 'none', 'sentence_avg': False}, 'optimizer': {'_name': 'adam', 'adam_betas': '(0.9, 0.98)', 'adam_eps': 1e-06, 'weight_decay': 0.01, 'use_old_adam': False, 'fp16_adam_stats': False, 'tpu': False, 'lr': [0.0006], 'block_wise': False}, 'lr_scheduler': {'_name': 'polynomial_decay', 'warmup_updates': 375, 'force_anneal': None, 'end_learning_rate': 0.0, 'power': 1.0, 'total_num_update': 300000.0, 'lr': [0.0006]}, 'scoring': {'_name': 'bleu', 'pad': 1, 'eos': 2, 'unk': 3}, 'bpe': None, 'tokenizer': None}
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:2 to store for rank: 0
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:2 with 2 nodes.
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:3 to store for rank: 0
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:3 with 2 nodes.
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:4 to store for rank: 0
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:4 with 2 nodes.
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:5 to store for rank: 0
+2023-06-30 19:00:49 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:5 with 2 nodes.
+2023-06-30 19:00:50 | INFO | fairseq_cli.train | LanguageModel(
+  (decoder): LMDecoder(
+    (dropout_module): Dropout(p=0.1, inplace=False)
+    (embed_tokens): Embedding(100287, 768, padding_idx=1)
+    (output_projection): Linear(in_features=768, out_features=100287, bias=False)
+    (layers): ModuleList(
+      (0): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): FeedForwardNetwork(
+          (activation_dropout_module): Dropout(p=0.0, inplace=False)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (1): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (moe_layer): MH_MOELayer(
+          (gate): Top2Gate(
+            (wg_reduction): Linear(in_features=384, out_features=16, bias=False)
+          )
+          (experts): ModuleList(
+            (0): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (1): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (2): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (3): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (multi_heads): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (2): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): FeedForwardNetwork(
+          (activation_dropout_module): Dropout(p=0.0, inplace=False)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (3): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (moe_layer): MH_MOELayer(
+          (gate): Top2Gate(
+            (wg_reduction): Linear(in_features=384, out_features=16, bias=False)
+          )
+          (experts): ModuleList(
+            (0): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (1): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (2): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (3): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (multi_heads): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (4): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): FeedForwardNetwork(
+          (activation_dropout_module): Dropout(p=0.0, inplace=False)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (5): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (moe_layer): MH_MOELayer(
+          (gate): Top2Gate(
+            (wg_reduction): Linear(in_features=384, out_features=16, bias=False)
+          )
+          (experts): ModuleList(
+            (0): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (1): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (2): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (3): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (multi_heads): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (6): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): FeedForwardNetwork(
+          (activation_dropout_module): Dropout(p=0.0, inplace=False)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (7): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (moe_layer): MH_MOELayer(
+          (gate): Top2Gate(
+            (wg_reduction): Linear(in_features=384, out_features=16, bias=False)
+          )
+          (experts): ModuleList(
+            (0): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (1): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (2): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (3): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (multi_heads): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (8): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): FeedForwardNetwork(
+          (activation_dropout_module): Dropout(p=0.0, inplace=False)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (9): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (moe_layer): MH_MOELayer(
+          (gate): Top2Gate(
+            (wg_reduction): Linear(in_features=384, out_features=16, bias=False)
+          )
+          (experts): ModuleList(
+            (0): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (1): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (2): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (3): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (multi_heads): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (10): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): FeedForwardNetwork(
+          (activation_dropout_module): Dropout(p=0.0, inplace=False)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+      (11): DecoderLayer(
+        (dropout_module): Dropout(p=0.1, inplace=False)
+        (self_attn): MultiheadAttention(
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          (inner_attn_ln): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+          (dropout_module): Dropout(p=0.1, inplace=False)
+          (xpos): XPOS()
+        )
+        (self_attn_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (moe_layer): MH_MOELayer(
+          (gate): Top2Gate(
+            (wg_reduction): Linear(in_features=384, out_features=16, bias=False)
+          )
+          (experts): ModuleList(
+            (0): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (1): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (2): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+            (3): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.1, inplace=False)
+              (fc1): Linear(in_features=384, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=384, bias=True)
+              (ffn_layernorm): FusedLayerNorm(torch.Size([3072]), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (multi_heads): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+  )
+)
+2023-06-30 19:00:50 | INFO | fairseq_cli.train | task: GPTPretrainingTask
+2023-06-30 19:00:50 | INFO | fairseq_cli.train | model: LanguageModel
+2023-06-30 19:00:50 | INFO | fairseq_cli.train | criterion: MoECrossEntropyCriterion
+2023-06-30 19:00:50 | INFO | fairseq_cli.train | num. non-expert model params: 140,921,856 (num. trained: 140,921,856)
+2023-06-30 19:00:50 | INFO | fairseq_cli.train | num. expert model params: 56,853,504 (num. trained: 56,853,504)
+2023-06-30 19:00:51 | INFO | fairseq_cli.train | nvidia-smi stats: {'gpu_0_mem_used_gb': 13.8701171875, 'gpu_1_mem_used_gb': 14.2236328125, 'gpu_2_mem_used_gb': 13.3076171875, 'gpu_3_mem_used_gb': 13.2998046875, 'gpu_4_mem_used_gb': 13.3076171875, 'gpu_5_mem_used_gb': 13.2919921875, 'gpu_6_mem_used_gb': 13.3017578125, 'gpu_7_mem_used_gb': 13.2724609375, 'gpu_8_mem_used_gb': 13.1748046875, 'gpu_9_mem_used_gb': 13.3017578125, 'gpu_10_mem_used_gb': 13.3017578125, 'gpu_11_mem_used_gb': 13.2880859375, 'gpu_12_mem_used_gb': 13.2998046875, 'gpu_13_mem_used_gb': 13.3017578125, 'gpu_14_mem_used_gb': 13.3017578125, 'gpu_15_mem_used_gb': 13.2216796875}
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.embed_tokens.weight <- decoder.output_projection.weight
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.output_projection.bias <- decoder.layers.1.moe_layer.gate.wg_reduction.bias
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.output_projection.bias <- decoder.layers.3.moe_layer.gate.wg_reduction.bias
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.output_projection.bias <- decoder.layers.5.moe_layer.gate.wg_reduction.bias
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.output_projection.bias <- decoder.layers.7.moe_layer.gate.wg_reduction.bias
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.output_projection.bias <- decoder.layers.9.moe_layer.gate.wg_reduction.bias
+2023-06-30 19:00:51 | INFO | fairseq.trainer | detected shared parameter: decoder.output_projection.bias <- decoder.layers.11.moe_layer.gate.wg_reduction.bias
+2023-06-30 19:00:52 | INFO | fairseq.trainer | nvidia-smi stats: {'gpu_0_mem_used_gb': 13.8701171875, 'gpu_1_mem_used_gb': 14.2236328125, 'gpu_2_mem_used_gb': 13.3076171875, 'gpu_3_mem_used_gb': 13.2998046875, 'gpu_4_mem_used_gb': 13.3076171875, 'gpu_5_mem_used_gb': 13.2919921875, 'gpu_6_mem_used_gb': 13.3017578125, 'gpu_7_mem_used_gb': 13.2724609375, 'gpu_8_mem_used_gb': 13.1748046875, 'gpu_9_mem_used_gb': 13.3017578125, 'gpu_10_mem_used_gb': 13.3017578125, 'gpu_11_mem_used_gb': 13.2880859375, 'gpu_12_mem_used_gb': 13.2998046875, 'gpu_13_mem_used_gb': 13.3017578125, 'gpu_14_mem_used_gb': 13.3017578125, 'gpu_15_mem_used_gb': 13.2216796875}
+2023-06-30 19:00:52 | INFO | fairseq.utils | ***********************CUDA enviroments for all 2 workers***********************
+2023-06-30 19:00:52 | INFO | fairseq.utils | rank   0: capabilities =  7.0  ; total memory = 31.749 GB ; name = Tesla V100-SXM3-32GB                    
+2023-06-30 19:00:52 | INFO | fairseq.utils | rank   1: capabilities =  7.0  ; total memory = 31.749 GB ; name = Tesla V100-SXM3-32GB                    
+2023-06-30 19:00:52 | INFO | fairseq.utils | ***********************CUDA enviroments for all 2 workers***********************
+2023-06-30 19:00:52 | INFO | fairseq_cli.train | training on 2 devices (GPUs/TPUs)
+2023-06-30 19:00:52 | INFO | fairseq_cli.train | max tokens per GPU = None and batch size per GPU = 2
+2023-06-30 19:00:53 | INFO | fairseq_cli.train | nvidia-smi stats: {'gpu_0_mem_used_gb': 14.0419921875, 'gpu_1_mem_used_gb': 14.3955078125, 'gpu_2_mem_used_gb': 13.3076171875, 'gpu_3_mem_used_gb': 13.2998046875, 'gpu_4_mem_used_gb': 13.3076171875, 'gpu_5_mem_used_gb': 13.2919921875, 'gpu_6_mem_used_gb': 13.3017578125, 'gpu_7_mem_used_gb': 13.2724609375, 'gpu_8_mem_used_gb': 13.1748046875, 'gpu_9_mem_used_gb': 13.3017578125, 'gpu_10_mem_used_gb': 13.3017578125, 'gpu_11_mem_used_gb': 13.2880859375, 'gpu_12_mem_used_gb': 13.2998046875, 'gpu_13_mem_used_gb': 13.3017578125, 'gpu_14_mem_used_gb': 13.3017578125, 'gpu_15_mem_used_gb': 13.2216796875}
+2023-06-30 19:00:53 | INFO | fairseq.trainer | No existing checkpoint found /mnt1/msranlpintern/wuxun/MoE/MoE_results/test_moe/small-baseline-redstone_v2-flash_attn-8experts/checkpoint_last-rank-0.pt
+2023-06-30 19:00:53 | INFO | fairseq.trainer | loading train data for epoch 1
+2023-06-30 19:01:12 | INFO | fairseq.optim.adam | using FusedAdam
+2023-06-30 19:01:12 | INFO | fairseq.trainer | begin training epoch 1
+2023-06-30 19:01:12 | INFO | fairseq_cli.train | Start iterating over samples
+2023-06-30 19:01:12 | WARNING | infinibatch.iterators | trying to fetch item, but prefetch buffer is empty
+2023-06-30 19:01:54 | WARNING | infinibatch.iterators | trying to fetch item, but prefetch buffer is empty
+2023-06-30 19:01:54 | WARNING | infinibatch.iterators | trying to fetch item, but prefetch buffer is empty
+2023-06-30 19:01:54 | WARNING | infinibatch.iterators | trying to fetch item, but prefetch buffer is empty
+2023-06-30 19:01:54 | WARNING | infinibatch.iterators | trying to fetch item, but prefetch buffer is empty
+2023-06-30 19:02:07 | INFO | torch.nn.parallel.distributed | Reducer buckets have been rebuilt in this iteration.
+2023-06-30 19:07:58 | INFO | train_inner | epoch 001:     50 / 102400000 loss=15.433, moe_gate_loss=6.46993, overflow_expert1=5.924, overflow_expert2=34.239, entropy_gating=2.015, expert1_balance_top=50.919, expert1_balance_bottom=6.407, unused_expert1_count=0.014, expert2_balance_top=39.59, expert2_balance_bottom=11.535, unused_expert2_count=0, all_to_all_cpu_time_ms=0, all_to_all_cuda_time_ms=0, inner_loss=15.339, ppl=41455.1, wps=9174.2, ups=0.14, wpb=65514.4, bsz=32, num_updates=50, lr=8e-05, gnorm=1.581, clip=26, loss_scale=4, train_wall=363, cuda_gb_allocated=14.3, cuda_gb_reserved=16, cuda_gb_free=17.4, wall=425
+2023-06-30 19:13:54 | INFO | train_inner | epoch 001:    100 / 102400000 loss=12.238, moe_gate_loss=6.27024, overflow_expert1=4.308, overflow_expert2=29.571, entropy_gating=2.012, expert1_balance_top=48.21, expert1_balance_bottom=7.701, unused_expert1_count=0.02, expert2_balance_top=39.192, expert2_balance_bottom=12.64, unused_expert2_count=0.001, all_to_all_cpu_time_ms=0, all_to_all_cuda_time_ms=0, inner_loss=12.147, ppl=4536.28, wps=9191.4, ups=0.14, wpb=65506.3, bsz=32, num_updates=100, lr=0.00016, gnorm=0.714, clip=0, loss_scale=4, train_wall=356, cuda_gb_allocated=14.3, cuda_gb_reserved=16, cuda_gb_free=17.4, wall=781

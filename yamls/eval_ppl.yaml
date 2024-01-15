@@ -1,0 +1,77 @@
+description: unilm
+
+target:
+  service: amlk8s
+  # name: a100-8x-cus
+  # vc: Turing
+  # name: itphyperdgx2cl1
+  # vc: hai2
+  # vc: msrhyper
+  # name: itphyperdgx2cl1
+  # vc: msrhyper
+  # name: itphyperdgx2cl1
+  # vc: hai2
+  # vc: msrhyper
+  # name: v100-8x-eus-1
+  # vc: ads
+  service: sing
+  name: gcrprojvc1
+  # name: ndv2-eus-02
+  # vc: ads
+
+environment:
+  # image: chizewen/pytorch:1.12.1-mpi
+  image: nvidia/22.10:v2
+  registry: shumingdocker.azurecr.io
+  setup:
+  - git clone https://github.com/microsoft/torchscale.git
+  - cd torchscale
+  - pip install -e .
+  - pip install git+https://github.com/shumingma/fairseq.git@moe
+  - pip install git+https://github.com/shumingma/infinibatch.git
+  - pip install iopath
+  - pip install numpy==1.23.0
+  - pip install tiktoken
+  username: shumingdocker
+
+code:
+  local_dir: $CONFIG_DIR/..
+
+storage:
+  conversationhub:
+    storage_account_name: conversationhub
+    container_name: unilm
+  unilm:
+    storage_account_name: msranlp
+    container_name: unilm
+
+search:
+  job_template:
+    name: ft
+    sku: G1
+    command:
+    - export CUDA_VISIBLE_DEVICES=0
+    - cat /mnt/unilm/shaohanh/exp/unigpt_exp/data/pile_test.jsonl | python fairseq/eval_lm.py /mnt/unilm/shaohanh/data/tnlg_cl100k_dict_config_ppl/  --path /mnt/unilm/shaohanh/exp/lm_main_exp/{branch}/{ckpt}.pt  --batch-size 4 --buffer-size 32 --output-word-probs  --output-word-stats --skip-invalid-size-inputs-valid-test > /mnt/unilm/shaohanh/exp/lm_main_exp/{branch}/{ckpt}_ppl.out
+    submit_args:
+      env:
+        NCCL_DEBUG: INFO
+        MKL_NUM_THREADS: 1
+        OMP_NUM_THREADS: 1
+    # priority: High
+    # preemptible: True
+    execution_mode: basic
+    priority: High
+    sla_tier: Premium
+    process_count_per_node: 1
+  type: hyperdrive  
+  sampling: grid
+  max_trials: 500
+  parallel_trials: 500
+  params:
+    - name: branch
+      spec: discrete
+      # values: ['0326-gpt-small-tiktoken', '0326-gpt-small-tiktoken-fullsentence', '0326-gpt-small-tiktoken-fullsentence-rsv0']
+      values: ['0326-gpt-small-tiktoken-fullsentence-rsv1', '0508-gpt-small-tiktoken-rsv1_1', '0508-gpt-small-tiktoken-cc-2249', '0508-gpt-small-tiktoken-cc-baseline', '0326-gpt-small-tiktoken-fullsentence-rsv0-multilingual']
+    - name: ckpt
+      spec: discrete
+      values: ['checkpoint_1_50000', 'checkpoint_1_100000']
