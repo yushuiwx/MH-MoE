@@ -1,0 +1,90 @@
+description: unilm
+
+target:
+  service: sing
+  name: gcrprojvc1
+  resource_group: gcr-singularity-proj1
+
+# target:
+#   service: sing
+#   name: msravc
+#   resource_group: gcr-singularity-msra
+
+environment:
+  image: nvidia/22.10:v2
+  registry: shumingdocker.azurecr.io
+  username: shumingdocker
+
+# environment:
+#   image: base/job/pytorch/ptca-rocm5.4_ubuntu20.04_py3.8_pytorch_1.12.1:20230411T003107468
+#   registry: singularitybase.azurecr.io
+#   setup:
+#   - pip install datasets
+
+code:
+  local_dir: $CONFIG_DIR/..
+
+storage:
+  conversationhub:
+    storage_account_name: conversationhub
+    container_name: unilm
+  unilm:
+    storage_account_name: msranlp
+    container_name: unilm
+  msranlp:
+    storage_account_name: msranlp
+    container_name: unilm
+  nlcredstone:
+    storage_account_name: nlcredstone
+    container_name: unilm
+
+search:
+  job_template:
+    name: eval-nl-{branch}-{ckpt}-{task}-{shot}
+    sku: G1
+    command:
+    - export CUDA_VISIBLE_DEVICES=0
+    - bash language_modeling/setup_gpt_baseline_flash_attn.sh
+    - pip install -U datasets
+    - bash scripts/nl-eval-mp1-modified-reduce-bsz.sh {task} /mnt1/msranlpintern/wuxun/MoE/MoE_results/NEW_RESULTS/mhmoe_standard_code/base_moe/{branch}/{ckpt}.pt /mnt1/msranlpintern/wuxun/MoE/MoE_results/EVALUATION_RESULTS/base_moe/{branch}/{ckpt} {shot} '--arch gpt_small --model-parallel-size 1 --required-batch-size-multiple 1 --criterion harness_eval --pad-to-max-length 2048 --subln --xpos-rel-pos --no-token-positional-embeddings --tiktoken-model cl100k_base --dict-path /mnt/msranlp/shaohanh/exp/unigpt_exp/data/tiktoken/cl100k_w_code_dict.txt  --moe-expert-count 128 --moe-freq 2 --use-xmoe --moe-gating-use-fp32 --moe-second-expert-policy random --moe-normalize-gate-prob-before-dropping --moe-eval-capacity-token-fraction 2 '
+    submit_args:
+      env:
+        NCCL_DEBUG: INFO
+        MKL_NUM_THREADS: 1
+        OMP_NUM_THREADS: 1
+    priority: High
+    preemptible: True
+    # execution_mode: basic
+    # priority: High
+    # sla_tier: Premium
+    # process_count_per_node: 1
+  type: grid  
+  sampling: grid
+  max_trials: 500
+  parallel_trials: 500
+  params:
+    - name: branch
+      spec: discrete
+      # values: ['1030-data-retnet-1.3b-rdp-20-21']
+      # values: ['1030-data-retnet-1.3b-cc-20-21-wiki_threshold_0.1', '1030-data-retnet-1.3b-cc-20-21-wiki_threshold_0.25']
+      # values: ['1030-data-retnet-1.3b-cc-20-21-wiki_threshold_0.04', '1030-data-retnet-1.3b-rdp-20-21-all']
+      # values: ['1030-data-retnet-1.3b-rdp-20-21-all']
+      # values: ['1030-data-retnet-1.3b-cc-20-21-wiki_threshold_0.1']
+      # values: ['1030-data-retnet-1.3b-cc-20-21-wiki_threshold_0.1-kenlm_threshold_middle', '1030-data-retnet-1.3b-cc-rfw-20-21-wiki_threshold_0.005_rerun2', '1030-data-retnet-1.3b-cc-rfw-20-21-wiki_threshold_0.13_rerun2', '1030-data-retnet-1.3b-cc-rfw-20-21-wiki_threshold_0.23_rerun2']
+      # values: ['1117-data-retnet-1.3b-redstone_v3_52_config']
+      # values: ['1117-data-retnet-1.3b-redstone_v3_51_config']
+      values: ['small-baseline-redstone_v2-flash_attn-128experts']
+    - name: ckpt
+      spec: discrete
+      # values: ['checkpoint_1_176000', 'checkpoint_1_200000',]
+      # values: ['checkpoint_1_126000', 'checkpoint_1_150000',]
+      # values: ['checkpoint_1_76000', 'checkpoint_1_100000',]
+      # values: ['checkpoint_1_26000']
+      values: ['checkpoint_1_100000', 'checkpoint_1_150000', 'checkpoint_1_200000', 'checkpoint_1_250000', 'checkpoint_1_300000']
+    - name: task
+      spec: discrete
+      # values: ["harness_anli_r1", "harness_anli_r2", "harness_anli_r3", "harness_boolq", "harness_copa", "harness_openbookqa", "harness_piqa", "harness_rte", "harness_wic", "harness_winogrande", "harness_hellaswag", "harness_arc_challenge", "harness_arc_easy", "harness_record", "harness_truthfullqa_mc1", "harness_truthfullqa_mc2",  ]
+      values: ["harness_copa", "harness_openbookqa", "harness_piqa", "harness_rte", "harness_wic", "harness_winogrande", "harness_hellaswag", "harness_arc_challenge", "harness_arc_easy", "harness_record", "harness_truthfullqa_mc1", "harness_truthfullqa_mc2",  ]
+    - name: shot
+      spec: discrete
+      values: [0]

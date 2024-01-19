@@ -1,0 +1,50 @@
+description: torchscale
+
+target:
+  service: aml
+  name: gcrarc
+  # name: gcraksa100cl2
+  # service: amlk8s
+  # name: itphyperdgx2cl1
+  # vc: hai2
+
+environment:
+  image: nvidia/a100:v2
+  registry: shumingdocker.azurecr.io
+  setup:
+  - echo "master_addr:" "$$MASTER_ADDR"
+  - echo "master_port:" $$MASTER_PORT
+  - echo "node_rank:" $$NODE_RANK
+  username: shumingdocker
+  # Key: oU+TGeTmvj2h8K68PFAahIgnAYJy05kh
+
+code:
+  local_dir: $CONFIG_DIR/..
+
+storage:
+  msranlp:
+    storage_account_name: msranlp
+    container_name: unilm
+
+search:
+  job_template:
+    name: train-{rank}
+    sku: 4xG8
+    process_count_per_node: 1
+    mpi: True
+    command:
+    - unset CUDA_VISIBLE_DEVICES
+    - echo $${rank}
+    - bash language_modeling/setup.sh 
+    # - bash language_modeling/pretrain.sh 8 2 gpt_small_baseline_arc_test
+    - bash language_modeling/debug.sh 8 4 "--flash-attention"
+    submit_args:
+      env:
+        NCCL_DEBUG: "INFO"
+        SINGULARITY_MPI_ENV: "-mca pml ucx --mca btl ^vader,tcp,openib -x NCCL_IB_HCA=mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_14,mlx5_15,mlx5_16,mlx5_17,mlx5_9,mlx5_10,mlx5_11,mlx5_12 -x NCCL_DEBUG=INFO"
+  type: grid
+  max_trials: 500
+  params:
+    - name: rank
+      spec: discrete
+      values: [0]
