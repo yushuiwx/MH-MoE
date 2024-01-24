@@ -1,0 +1,1 @@
+bash language_modeling/setup_gpt_baseline_flash_attn.sh

@@ -1,0 +1,90 @@
+description: unilm
+
+target:
+  service: amlk8s
+  # name: a100-8x-cus
+  # vc: Turing
+  # name: itphyperdgx2cl1
+  # vc: hai2
+  # vc: msrhyper
+  # name: itphyperdgx2cl1
+  # vc: msrhyper
+  # name: itphyperdgx2cl1
+  # vc: hai2
+  # vc: msrhyper
+  # name: v100-8x-eus-1
+  # vc: ads
+  # service: sing
+  # name: gcrprojvc1
+  # name: ndv2-eus-02
+  # vc: ads
+  name: itphyperbj1cl1
+  vc: hcbj01
+
+environment:
+  # image: chizewen/pytorch:1.12.1-mpi
+  image: nvidia/22.10:v2
+  registry: shumingdocker.azurecr.io
+  setup:
+  - git clone https://github.com/microsoft/torchscale.git
+  - cd torchscale
+  - pip install -e .
+  - pip install git+https://github.com/shumingma/fairseq.git@moe
+  - pip install git+https://github.com/shumingma/infinibatch.git
+  - pip install iopath
+  - pip install numpy==1.23.0
+  - pip install tiktoken
+  - pip install -U datasets
+  username: shumingdocker
+
+code:
+  local_dir: $CONFIG_DIR/..
+
+storage:
+  conversationhub:
+    storage_account_name: conversationhub
+    container_name: unilm
+  unilm:
+    storage_account_name: msranlp
+    container_name: unilm
+  msranlp:
+    storage_account_name: msranlp
+    container_name: unilm
+
+
+search:
+  job_template:
+    name: ft
+    sku: 32G1
+    command:
+    - export CUDA_VISIBLE_DEVICES=0
+    - bash scripts/nl-eval.sh {task} /mnt/unilm/shaohanh/exp/lm_main_exp/{branch}/{ckpt}.pt /mnt/unilm/shaohanh/exp/lm_main_exp/{branch}/{ckpt}_nl_zero-shot {shot}
+    submit_args:
+      env:
+        NCCL_DEBUG: INFO
+        MKL_NUM_THREADS: 1
+        OMP_NUM_THREADS: 1
+    priority: High
+    preemptible: True
+    # execution_mode: basic
+    # priority: High
+    # sla_tier: Premium
+    # process_count_per_node: 1
+  type: grid  
+  sampling: grid
+  max_trials: 500
+  parallel_trials: 500
+  params:
+    - name: branch
+      spec: discrete
+      values: ['0326-gpt-small-tiktoken', '0326-gpt-small-tiktoken-fullsentence', '0326-gpt-small-tiktoken-fullsentence-rsv0']
+    - name: ckpt
+      spec: discrete
+      values: ['checkpoint_1_50000', 'checkpoint_1_100000']
+    - name: task
+      spec: discrete
+      # values: ['hellaswag', 'cb', 'boolq', 'copa', 'piqa', 'winograd', 'winogrande', 'storycloze']
+      values: ['storycloze']
+    - name: shot
+      spec: discrete
+      values: [0, 1, 4, 8]
