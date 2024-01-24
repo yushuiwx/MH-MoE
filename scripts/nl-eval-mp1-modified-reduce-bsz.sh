@@ -41,7 +41,7 @@ python -m torch.distributed.launch --nproc_per_node=1  fairseq/validate.py /mnt/
   --tokens-per-sample 2048     --reset-dataloader --all-gpt-emb     --log-format simple --log-interval 4  \
   --lr-scheduler polynomial_decay --optimizer adam --adam-betas '(0.9,0.98)'     --adam-eps 1e-6 --clip-norm 2.0 --warmup-updates 0   \
   --total-num-update 1 --max-update 0 --fp16     --restore-file ${MODEL}      --fp16-init-scale 4 --fp16-scale-window 256 --min-loss-scale 0.0001       \
-  --train-num 5000 --valid-num 1000     --required-batch-size-multiple 1   --spm-model /mnt/msranlp/cube/llama/sentencepiece.bpe.model  \
+  --train-num 5000 --valid-num 1000     --required-batch-size-multiple 1  \
   --reset-optimizer  --fp16-no-flatten-grads \
   --eval-data ${TASK} --seed 1 --k ${SHOT} --temp-index 0  --batch-size ${BSZ} --pad-to-max-length ${LENGTH} --eval-data ${TASK} ${extra_args} \
   > $OUTPUT_PATH 2>&1
