@@ -37,3 +37,13 @@ bash scripts/setup.sh
 # run the MH-MoE
 bash scripts/run.sh 16 1 moe8-top1-freq2-random-6e-4 512 6e-4 8 1 2 "--moe-second-expert-policy random --moe-ffn-dim 2048"
 ```
+## Citation
+If our work is useful for you, please consider citing our paper:
+```
+@article{wu2024multi,
+  title={Multi-head mixture-of-experts},
+  author={Wu, Xun and Huang, Shaohan and Wang, Wenhui and Wei, Furu},
+  journal={arXiv preprint arXiv:2404.15045},
+  year={2024}
+}
+```
